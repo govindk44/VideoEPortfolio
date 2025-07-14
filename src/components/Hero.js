@@ -12,8 +12,9 @@ function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  // SSR-safe initialization for isDesktop
-  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' ? window.innerWidth > 768 : true);
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth > 768 : true
+  );
   const previewRef = useRef(null);
 
   useEffect(() => {
@@ -23,7 +24,6 @@ function Hero() {
       setCurrentRole((prev) => (prev + 1) % roles.length);
     }, 3000);
 
-    // Listen for window resize to update isDesktop
     const handleResize = () => {
       setIsDesktop(window.innerWidth > 768);
     };
@@ -33,7 +33,7 @@ function Hero() {
       clearInterval(roleInterval);
       window.removeEventListener('resize', handleResize);
     };
-  }, [roles.length]); 
+  }, []); // ✅ Fixed: Removed 'roles.length' from dependency array
 
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
@@ -52,9 +52,9 @@ function Hero() {
   const handleMouseMove = (e) => {
     if (!previewRef.current) return;
     const rect = previewRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2; // -1 to 1
-    setTilt({ x: y * 15, y: x * 15 }); // max 15deg tilt
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    setTilt({ x: y * 15, y: x * 15 });
   };
 
   const handleMouseLeave = () => {
@@ -106,11 +106,17 @@ function Hero() {
                 src={myImage}
                 alt="Mahantesh Badiger Showreel Preview portrait"
                 className="showreel-image"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: 'inherit'
+                }}
               />
             </div>
           </div>
         </div>
+
         {isDesktop && (
           <div className="scroll-indicator">
             <div className="scroll-arrow">
