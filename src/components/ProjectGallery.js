@@ -5,11 +5,11 @@ import "./ProjectGallery.css";
 import image from "../assets/CREATEDITOR.jpg";
 import rcb from "../assets/rcb.jpg";
 // import pix from "../assets/1.jpg";
-import pix1 from "../assets/2.jpg";
+// import pix1 from "../assets/2.jpg";
 // import pix2 from "../assets/3.jpg";
-// import nirthumb from "../assets/NIRTHUMB.jpg";
+import nirthumb from "../assets/NIRTHUMB.jpg";
 import logo from "../assets/logo.jpg";
-// import wed from "../assets/img.jpg";
+import wed from "../assets/img.jpg";
 
 function ProjectGallery() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
