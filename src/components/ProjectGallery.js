@@ -1,27 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "./ProjectGallery.css";
-import myimage from "../assets/NEO.jpg";
+// import myimage from "../assets/NEO.jpg";
 import image from "../assets/CREATEDITOR.jpg";
 import rcb from "../assets/rcb.jpg";
-import pix from "../assets/1.jpg";
+// import pix from "../assets/1.jpg";
 import pix1 from "../assets/2.jpg";
-import pix2 from "../assets/3.jpg";
-import nirthumb from "../assets/NIRTHUMB.jpg";
+// import pix2 from "../assets/3.jpg";
+// import nirthumb from "../assets/NIRTHUMB.jpg";
 import logo from "../assets/logo.jpg";
-import wed from "../assets/img.jpg";
+// import wed from "../assets/img.jpg";
 
 function ProjectGallery() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [activeFilter, setActiveFilter] = useState("all");
   const [showVideoId, setShowVideoId] = useState(null);
-  const [ setLoadedImages] = useState({});
+  const [loadedImages, setLoadedImages] = useState({});
+  // Store refs for each video
+  const videoRefs = useRef({});
 
   const handleImageLoad = (id) => {
     setLoadedImages((prev) => ({ ...prev, [id]: true }));
   };
 
   const handleVideoToggle = (id) => {
+    // Pause and reset any currently playing video
+    if (showVideoId && videoRefs.current[showVideoId]) {
+      const vid = videoRefs.current[showVideoId];
+      vid.pause();
+      vid.currentTime = 0;
+    }
     setShowVideoId((prev) => (prev === id ? null : id));
   };
 
@@ -82,40 +90,40 @@ function ProjectGallery() {
       thumbnail: image,
       link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
-    {
-      id: 6,
-      title: "Wedding TEASER *",
-      category: "wedding",
-      client: "AMEER PHOTOGRAPHY BENGALORE",
-      tools: ["Premiere Pro"],
-      description: "Visual storytelling that speaks beyond words.",
-      duration: "0:56",
-      thumbnail: wed,
-      youtube: "aaoEcJ0jFzo",
-    },
-    {
-      id: 7,
-      title: "Wedding TEASER **",
-      category: "wedding",
-      client: "Yuga Pictures,Tumakuru",
-      tools: ["Premiere Pro"],
-      description: "Turning raw moments into timeless memories.",
-      duration: "1:37",
-      thumbnail: nirthumb,
-      youtube: "boPpx2onbBc",
-    },
-    {
-      id: 8,
-      title: "Wedding TEASER ***",
-      category: "wedding",
-      client: "NEO WEDS,HUBBALLI",
-      tools: ["Premiere Pro"],
-      description: "Crafted with emotion, edited with love.",
-      duration: "1:15",
-      thumbnail: myimage,
-      video:
-        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417250/video2_zqs54y.mp4",
-    },
+    // {
+    //   id: 6,
+    //   title: "Wedding TEASER *",
+    //   category: "wedding",
+    //   client: "AMEER PHOTOGRAPHY BENGALORE",
+    //   tools: ["Premiere Pro"],
+    //   description: "Visual storytelling that speaks beyond words.",
+    //   duration: "0:56",
+    //   thumbnail: wed,
+    //   youtube: "aaoEcJ0jFzo",
+    // },
+    // {
+    //   id: 7,
+    //   title: "Wedding TEASER **",
+    //   category: "wedding",
+    //   client: "Yuga Pictures,Tumakuru",
+    //   tools: ["Premiere Pro"],
+    //   description: "Turning raw moments into timeless memories.",
+    //   duration: "1:37",
+    //   thumbnail: nirthumb,
+    //   youtube: "boPpx2onbBc",
+    // },
+    // {
+    //   id: 8,
+    //   title: "Wedding TEASER ***",
+    //   category: "wedding",
+    //   client: "NEO WEDS,HUBBALLI",
+    //   tools: ["Premiere Pro"],
+    //   description: "Crafted with emotion, edited with love.",
+    //   duration: "1:15",
+    //   thumbnail: myimage,
+    //   video:
+    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417250/video2_zqs54y.mp4",
+    // },
     {
       id: 9,
       title: "PRE WEDDING TEASER",
@@ -128,30 +136,30 @@ function ProjectGallery() {
       video:
         "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417256/SAMPLE_eazgek.mp4",
     },
-    {
-      id: 10,
-      title: "PRE WEDDING TEASER",
-      category: "pre wed",
-      client: "AMEER PHOTOGRAPHY BENGALORE",
-      tools: ["Premiere Pro"],
-      description: "Emotion meets precision.",
-      duration: "1:12",
-      thumbnail: pix,
-      video:
-        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417243/SAMPLE_1_lqtnhu.mp4",
-    },
-    {
-      id: 11,
-      title: "PRE WEDDING TEASER",
-      category: "pre wed",
-      client: "AMEER PHOTOGRAPHY BENGALORE",
-      tools: ["Premiere Pro"],
-      description: "Precision. Emotion. Storytelling.",
-      duration: "1:11",
-      thumbnail: pix2,
-      video:
-        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417226/video1_msq9kp.mp4",
-    },
+    // {
+    //   id: 10,
+    //   title: "PRE WEDDING TEASER",
+    //   category: "pre wed",
+    //   client: "AMEER PHOTOGRAPHY BENGALORE",
+    //   tools: ["Premiere Pro"],
+    //   description: "Emotion meets precision.",
+    //   duration: "1:12",
+    //   thumbnail: pix,
+    //   video:
+    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417243/SAMPLE_1_lqtnhu.mp4",
+    // },
+    // {
+    //   id: 11,
+    //   title: "PRE WEDDING TEASER",
+    //   category: "pre wed",
+    //   client: "AMEER PHOTOGRAPHY BENGALORE",
+    //   tools: ["Premiere Pro"],
+    //   description: "Precision. Emotion. Storytelling.",
+    //   duration: "1:11",
+    //   thumbnail: pix2,
+    //   video:
+    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417226/video1_msq9kp.mp4",
+    // },
   ];
 
   const categories = [
@@ -230,7 +238,13 @@ function ProjectGallery() {
                   <div className="thumbnail-placeholder">
                     {showVideoId === project.id ? (
                       project.video ? (
-                        <video controls src={project.video} style={{ width: "100%", height: "100%", borderRadius: "12px", objectFit: "cover" }} />
+                        <video
+                          controls
+                          src={project.video}
+                          style={{ width: "100%", height: "100%", borderRadius: "12px", objectFit: "cover" }}
+                          ref={el => { videoRefs.current[project.id] = el; }}
+                          autoPlay
+                        />
                       ) : project.youtube ? (
                         <iframe
                           src={`https://www.youtube.com/embed/${project.youtube}?autoplay=1`}
@@ -245,6 +259,8 @@ function ProjectGallery() {
                       <>
                         <img
                           src={project.thumbnail}
+                          srcSet={`${project.thumbnailSmall} 480w, ${project.thumbnail} 800w`}
+                          sizes="(max-width: 600px) 480px, 800px"
                           alt={project.title}
                           onLoad={() => handleImageLoad(project.id)}
                           loading="lazy"
@@ -253,8 +269,10 @@ function ProjectGallery() {
                             height: "100%",
                             objectFit: "cover",
                             borderRadius: "12px",
+                            background: loadedImages[project.id] ? "none" : "#eee"
                           }}
                         />
+                        {!loadedImages[project.id] && <div className="skeleton-loader" />}
                         <div
                           className="play-overlay"
                           onClick={() => handleVideoToggle(project.id)}
