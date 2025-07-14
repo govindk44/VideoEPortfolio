@@ -2,18 +2,19 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Hero.css';
 import myImage from '../assets/IMG_4000.jpg';
 
+// Move roles outside the component to avoid linter warning
+const roles = [
+  'Video Editor',
+  'Story Teller'
+];
 
 function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+  // SSR-safe initialization for isDesktop
+  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' ? window.innerWidth > 768 : true);
   const previewRef = useRef(null);
-
-  const roles = [
-    'Video Editor',
-    'Story Teller'
-  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -32,7 +33,7 @@ function Hero() {
       clearInterval(roleInterval);
       window.removeEventListener('resize', handleResize);
     };
-  }, [roles.length]);
+  }, [roles.length]); 
 
   const scrollToProjects = () => {
     const element = document.getElementById('projects');
@@ -49,6 +50,7 @@ function Hero() {
   };
 
   const handleMouseMove = (e) => {
+    if (!previewRef.current) return;
     const rect = previewRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to 1
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2; // -1 to 1
@@ -102,7 +104,7 @@ function Hero() {
             >
               <img
                 src={myImage}
-                alt="Showreel Preview"
+                alt="Mahantesh Badiger Showreel Preview portrait"
                 className="showreel-image"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
               />
