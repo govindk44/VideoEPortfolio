@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import "./ProjectGallery.css";
 import myimage from "../assets/NEO.jpg";
@@ -18,6 +18,22 @@ function ProjectGallery() {
   const [loadedImages, setLoadedImages] = useState({});
   // Store refs for each video
   const videoRefs = useRef({});
+  const [videoPlayStates, setVideoPlayStates] = useState({}); // Track play state for each video
+  const [isMobile, setIsMobile] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 600);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) setVisibleCount(filteredProjects.length);
+    else setVisibleCount(3);
+    // eslint-disable-next-line
+  }, [isMobile, activeFilter]);
 
   const handleImageLoad = (id) => {
     setLoadedImages((prev) => ({ ...prev, [id]: true }));
@@ -33,6 +49,26 @@ function ProjectGallery() {
     setShowVideoId((prev) => (prev === id ? null : id));
   };
 
+  // Update play state when video plays/pauses
+  const handleVideoPlay = (id) => {
+    setVideoPlayStates((prev) => ({ ...prev, [id]: true }));
+  };
+  const handleVideoPause = (id) => {
+    setVideoPlayStates((prev) => ({ ...prev, [id]: false }));
+  };
+
+  // Add a function to handle play/pause on video click
+  const handleVideoClick = (id) => {
+    const vid = videoRefs.current[id];
+    if (vid) {
+      if (vid.paused) {
+        vid.play();
+      } else {
+        vid.pause();
+      }
+    }
+  };
+
   const projects = [
     {
       id: 1,
@@ -44,6 +80,7 @@ function ProjectGallery() {
         "A dynamic brand video showcasing company values and innovation.",
       duration: "0:36",
       thumbnail: logo,
+      thumbnailSmall: logo, // Use main image
       youtube: "MuWMCZFAynI",
     },
     {
@@ -56,6 +93,7 @@ function ProjectGallery() {
         "A dynamic brand video showcasing company values and innovation.",
       duration: "3:03",
       thumbnail: logo,
+      thumbnailSmall: logo, // Use main image
       youtube: "dzuN5-o6sVE",
     },
     {
@@ -67,6 +105,7 @@ function ProjectGallery() {
       description:
         "Cinematic music video with creative visual effects and color grading.",
       thumbnail: rcb,
+      thumbnailSmall: rcb, // Use main image
       youtube: "yA3QHSUUxcU",
     },
     {
@@ -78,6 +117,7 @@ function ProjectGallery() {
       description: "Trendy vertical videos optimized for social media.",
       duration: "0:30",
       thumbnail: image,
+      thumbnailSmall: image, // Use main image
       youtube: "gW8lwQp_3_0",
     },
     {
@@ -88,6 +128,7 @@ function ProjectGallery() {
       tools: ["YouTube"],
       description: "Visit my YouTube channel for more creative video content.",
       thumbnail: image,
+      thumbnailSmall: image, // Use main image
       link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
@@ -99,6 +140,7 @@ function ProjectGallery() {
       description: "Visual storytelling that speaks beyond words.",
       duration: "0:56",
       thumbnail: wed,
+      thumbnailSmall: wed, // Use main image
       youtube: "aaoEcJ0jFzo",
     },
     {
@@ -110,6 +152,7 @@ function ProjectGallery() {
       description: "Turning raw moments into timeless memories.",
       duration: "1:37",
       thumbnail: nirthumb,
+      thumbnailSmall: nirthumb, // Use main image
       youtube: "boPpx2onbBc",
     },
     {
@@ -196,6 +239,8 @@ function ProjectGallery() {
       ? projects
       : projects.filter((project) => project.category === activeFilter);
 
+  const projectsToShow = isMobile ? filteredProjects.slice(0, visibleCount) : filteredProjects;
+
   return (
     <section id="projects" className="projects" ref={ref}>
       <div className="container">
@@ -228,38 +273,60 @@ function ProjectGallery() {
           </div>
 
           <div className="projects-grid">
-            {filteredProjects.map((project, index) => (
+            {projectsToShow.map((project, index) => (
               <div
                 key={project.id}
                 className="project-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="project-thumbnail">
-                  <div className="thumbnail-placeholder">
+                  <div className={`thumbnail-placeholder${showVideoId === project.id ? ' is-playing' : ''}`}>
                     {showVideoId === project.id ? (
-                      project.video ? (
-                        <video
-                          controls
-                          src={project.video}
-                          style={{ width: "100%", height: "100%", borderRadius: "12px", objectFit: "cover" }}
-                          ref={el => { videoRefs.current[project.id] = el; }}
-                          autoPlay
-                        />
-                      ) : project.youtube ? (
-                        <iframe
-                          src={`https://www.youtube.com/embed/${project.youtube}?autoplay=1`}
-                          title={project.title}
-                          frameBorder="0"
-                          allow="autoplay; encrypted-media"
-                          allowFullScreen
-                          style={{ width: "100%", height: "100%", borderRadius: "12px" }}
-                        />
-                      ) : null
+                      <>
+                        {project.video ? (
+                          <>
+                            <video
+                              controls
+                              src={project.video}
+                              style={{ width: "100%", height: "100%", borderRadius: "12px", objectFit: "cover" }}
+                              ref={el => { videoRefs.current[project.id] = el; }}
+                              autoPlay
+                              onClick={() => handleVideoClick(project.id)}
+                              onPlay={() => handleVideoPlay(project.id)}
+                              onPause={() => handleVideoPause(project.id)}
+                            />
+                            <div
+                              className="video-play-pause-overlay"
+                              onClick={() => handleVideoClick(project.id)}
+                              title={videoPlayStates[project.id] ? "Pause" : "Play"}
+                            >
+                              {videoPlayStates[project.id] ? "❚❚" : "▶"}
+                            </div>
+                          </>
+                        ) : project.youtube ? (
+                          <iframe
+                            src={`https://www.youtube.com/embed/${project.youtube}?autoplay=1`}
+                            title={project.title}
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                            style={{ width: "100%", height: "100%", borderRadius: "12px" }}
+                            onClick={() => handleVideoToggle(project.id)}
+                          />
+                        ) : null}
+                        <div
+                          className="close-overlay"
+                          onClick={() => handleVideoToggle(project.id)}
+                          title="Close video"
+                        >
+                          ✕
+                        </div>
+                      </>
                     ) : (
                       <>
                         <img
-                          src={project.thumbnail}
-                          srcSet={`${project.thumbnailSmall} 480w, ${project.thumbnail} 800w`}
+                          src={project.thumbnailSmall || project.thumbnail}
+                          srcSet={project.thumbnailSmall ? `${project.thumbnailSmall} 480w, ${project.thumbnail} 800w` : `${project.thumbnail} 800w`}
                           sizes="(max-width: 600px) 480px, 800px"
                           alt={project.title}
                           onLoad={() => handleImageLoad(project.id)}
@@ -322,6 +389,16 @@ function ProjectGallery() {
               </div>
             ))}
           </div>
+          {isMobile && visibleCount < filteredProjects.length && (
+            <div style={{ textAlign: "center", margin: "1.5rem 0" }}>
+              <button
+                className="btn-small"
+                onClick={() => setVisibleCount((c) => c + 3)}
+              >
+                Load More
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>
