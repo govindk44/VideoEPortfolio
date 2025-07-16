@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "./ProjectGallery.css";
-// import myimage from "../assets/NEO.jpg";
+import myimage from "../assets/NEO.jpg";
 import image from "../assets/CREATEDITOR.jpg";
 import rcb from "../assets/rcb.jpg";
-// import pix from "../assets/1.jpg";
-// import pix1 from "../assets/2.jpg";
-// import pix2 from "../assets/3.jpg";
+import pix from "../assets/1.jpg";
+import pix1 from "../assets/2.jpg";
+import pix2 from "../assets/3.jpg";
 import nirthumb from "../assets/NIRTHUMB.jpg";
 import logo from "../assets/logo.jpg";
 import wed from "../assets/img.jpg";
@@ -112,54 +112,54 @@ function ProjectGallery() {
       thumbnail: nirthumb,
       youtube: "boPpx2onbBc",
     },
-    // {
-    //   id: 8,
-    //   title: "Wedding TEASER ***",
-    //   category: "wedding",
-    //   client: "NEO WEDS,HUBBALLI",
-    //   tools: ["Premiere Pro"],
-    //   description: "Crafted with emotion, edited with love.",
-    //   duration: "1:15",
-    //   thumbnail: myimage,
-    //   video:
-    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417250/video2_zqs54y.mp4",
-    // },
-    // {
-    //   id: 9,
-    //   title: "PRE WEDDING TEASER",
-    //   category: "pre wed",
-    //   client: "ANARGHYA PORTRAITURES,TUMAKURU",
-    //   tools: ["Premiere Pro"],
-    //   description: "A timeless story. Cinematically crafted.",
-    //   duration: "1:03",
-    //   thumbnail: pix1,
-    //   video:
-    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417256/SAMPLE_eazgek.mp4",
-    // },
-    // {
-    //   id: 10,
-    //   title: "PRE WEDDING TEASER",
-    //   category: "pre wed",
-    //   client: "AMEER PHOTOGRAPHY BENGALORE",
-    //   tools: ["Premiere Pro"],
-    //   description: "Emotion meets precision.",
-    //   duration: "1:12",
-    //   thumbnail: pix,
-    //   video:
-    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417243/SAMPLE_1_lqtnhu.mp4",
-    // },
-    // {
-    //   id: 11,
-    //   title: "PRE WEDDING TEASER",
-    //   category: "pre wed",
-    //   client: "AMEER PHOTOGRAPHY BENGALORE",
-    //   tools: ["Premiere Pro"],
-    //   description: "Precision. Emotion. Storytelling.",
-    //   duration: "1:11",
-    //   thumbnail: pix2,
-    //   video:
-    //     "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417226/video1_msq9kp.mp4",
-    // },
+    {
+      id: 8,
+      title: "Wedding TEASER ***",
+      category: "wedding",
+      client: "NEO WEDS,HUBBALLI",
+      tools: ["Premiere Pro"],
+      description: "Crafted with emotion, edited with love.",
+      duration: "1:15",
+      thumbnail: myimage,
+      video:
+        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417250/video2_zqs54y.mp4",
+    },
+    {
+      id: 9,
+      title: "PRE WEDDING TEASER",
+      category: "pre wed",
+      client: "ANARGHYA PORTRAITURES,TUMAKURU",
+      tools: ["Premiere Pro"],
+      description: "A timeless story. Cinematically crafted.",
+      duration: "1:03",
+      thumbnail: pix1,
+      video:
+        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417256/SAMPLE_eazgek.mp4",
+    },
+    {
+      id: 10,
+      title: "PRE WEDDING TEASER",
+      category: "pre wed",
+      client: "AMEER PHOTOGRAPHY BENGALORE",
+      tools: ["Premiere Pro"],
+      description: "Emotion meets precision.",
+      duration: "1:12",
+      thumbnail: pix,
+      video:
+        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417243/SAMPLE_1_lqtnhu.mp4",
+    },
+    {
+      id: 11,
+      title: "PRE WEDDING TEASER",
+      category: "pre wed",
+      client: "AMEER PHOTOGRAPHY BENGALORE",
+      tools: ["Premiere Pro"],
+      description: "Precision. Emotion. Storytelling.",
+      duration: "1:11",
+      thumbnail: pix2,
+      video:
+        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417226/video1_msq9kp.mp4",
+    },
   ];
 
   const categories = [
