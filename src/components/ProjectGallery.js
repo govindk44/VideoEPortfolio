@@ -147,7 +147,7 @@ function ProjectGallery() {
       id: 7,
       title: "Wedding TEASER **",
       category: "wedding",
-      client: "Yuga Pictures,Tumakuru",
+      client: "Yuga Pictures,BENGALORE",
       tools: ["Premiere Pro"],
       description: "Turning raw moments into timeless memories.",
       duration: "1:37",
