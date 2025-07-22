@@ -82,6 +82,7 @@ function ProjectGallery() {
       thumbnail: logo,
       thumbnailSmall: logo, // Use main image
       youtube: "MuWMCZFAynI",
+      link: "https://www.youtube.com/watch?v=MuWMCZFAynI",
     },
     {
       id: 2,
@@ -95,6 +96,7 @@ function ProjectGallery() {
       thumbnail: logo,
       thumbnailSmall: logo, // Use main image
       youtube: "dzuN5-o6sVE",
+      link: "https://www.youtube.com/watch?v=dzuN5-o6sVE",
     },
     {
       id: 3,
@@ -107,6 +109,7 @@ function ProjectGallery() {
       thumbnail: rcb,
       thumbnailSmall: rcb, // Use main image
       youtube: "yA3QHSUUxcU",
+      link: "https://www.youtube.com/watch?v=yA3QHSUUxcU",
     },
     {
       id: 4,
@@ -119,6 +122,7 @@ function ProjectGallery() {
       thumbnail: image,
       thumbnailSmall: image, // Use main image
       youtube: "gW8lwQp_3_0",
+      link: "https://www.youtube.com/watch?v=gW8lwQp_3_0",
     },
     {
       id: 5,
@@ -142,6 +146,7 @@ function ProjectGallery() {
       thumbnail: wed,
       thumbnailSmall: wed, // Use main image
       youtube: "aaoEcJ0jFzo",
+      link: "https://www.youtube.com/watch?v=aaoEcJ0jFzo",
     },
     {
       id: 7,
@@ -154,6 +159,7 @@ function ProjectGallery() {
       thumbnail: nirthumb,
       thumbnailSmall: nirthumb, // Use main image
       youtube: "boPpx2onbBc",
+      link: "https://www.youtube.com/watch?v=boPpx2onbBc",
     },
     {
       id: 8,
@@ -166,6 +172,7 @@ function ProjectGallery() {
       thumbnail: myimage,
       video:
         "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417250/video2_zqs54y.mp4",
+        link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
       id: 9,
@@ -178,6 +185,7 @@ function ProjectGallery() {
       thumbnail: pix1,
       video:
         "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417256/SAMPLE_eazgek.mp4",
+        link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
       id: 10,
@@ -190,6 +198,7 @@ function ProjectGallery() {
       thumbnail: pix,
       video:
         "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417243/SAMPLE_1_lqtnhu.mp4",
+        link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
       id: 11,
@@ -202,6 +211,7 @@ function ProjectGallery() {
       thumbnail: pix2,
       video:
         "https://res.cloudinary.com/dymj4wfdr/video/upload/v1752417226/video1_msq9kp.mp4",
+          link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
   ];
 
