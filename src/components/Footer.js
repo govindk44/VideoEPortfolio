@@ -144,7 +144,7 @@ const Footer = () => {
                   <span className="separator">•</span>
                   <a href="#terms" className="legal-link">Terms of Service</a>
                 </div>
-                <div className="developed-by">
+                <div className="Designed-by">
                   <small style={{ display: 'block', marginBottom: '0.2rem' }}>Developed by: Govind Kulkarni</small>
                   <small style={{ display: 'block', marginBottom: '0.2rem' }}>
                     <span role="img" aria-label="email">📧</span>
