@@ -145,7 +145,7 @@ const Footer = () => {
                   <a href="#terms" className="legal-link">Terms of Service</a>
                 </div>
                 <div className="Designed-by">
-                  <small style={{ display: 'block', marginBottom: '0.2rem' }}>Developed by: Govind Kulkarni</small>
+                  <small style={{ display: 'block', marginBottom: '0.2rem' }}>Designed by: Govind Kulkarni</small>
                   <small style={{ display: 'block', marginBottom: '0.2rem' }}>
                     <span role="img" aria-label="email">📧</span>
                     <a href="mailto:govindajithkulkarni@email.com" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'underline' }}>
