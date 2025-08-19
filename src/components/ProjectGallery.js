@@ -202,7 +202,7 @@ function ProjectGallery() {
         link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
-      id: 11
+      id: 11,
       title: "PRE WEDDING TEASER",
       category: "pre wed",
       client: "AMEER PHOTOGRAPHY BENGALORE",
