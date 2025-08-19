@@ -10,6 +10,7 @@ import pix2 from "../assets/3.jpg";
 import nirthumb from "../assets/NIRTHUMB.jpg";
 import logo from "../assets/logo.jpg";
 import wed from "../assets/img.jpg";
+import web2 from"../assets/web2.jpg";
 
 function ProjectGallery() {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -176,6 +177,19 @@ function ProjectGallery() {
     },
     {
       id: 9,
+      title: "Wedding TEASER ***",
+      category: "wedding",
+      client: "Tumakuru",
+      tools: ["Premiere Pro"],
+      description: "Crafted with emotion, edited with love.",
+      duration: "1:00",
+      thumbnail: web2,
+      video:
+        "https://res.cloudinary.com/dymj4wfdr/video/upload/v1755606229/ARJUN_WED_TEASER_pphywe.mp4",
+        link: "https://www.youtube.com/@mahanteshbadiger6819",
+    },
+    {
+      id: 10,
       title: "PRE WEDDING TEASER",
       category: "pre wed",
       client: "ANARGHYA PORTRAITURES,TUMAKURU",
@@ -188,7 +202,7 @@ function ProjectGallery() {
         link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
-      id: 10,
+      id: 11
       title: "PRE WEDDING TEASER",
       category: "pre wed",
       client: "AMEER PHOTOGRAPHY BENGALORE",
@@ -201,7 +215,7 @@ function ProjectGallery() {
         link: "https://www.youtube.com/@mahanteshbadiger6819",
     },
     {
-      id: 11,
+      id: 12,
       title: "PRE WEDDING TEASER",
       category: "pre wed",
       client: "AMEER PHOTOGRAPHY BENGALORE",
